@@ -23,6 +23,7 @@ sudo ./<script_name.sh>
 13.- Vbox for Ubuntu
 14.- Asusctl (ASUS ROG) for Ubuntu
 15.- Telegram for Ubuntu
+16.- Flatpak for Ubuntu
 ```
 
 ## Contributing

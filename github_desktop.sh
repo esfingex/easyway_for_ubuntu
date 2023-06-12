@@ -5,17 +5,19 @@ function update(){
 	apt-get autoremove -y
 }
 
-version=GitHubDesktop-linux-3.2.1-linux1.deb
+lasted=$(wget -q -O - https://api.github.com/repos/shiftkey/desktop/releases/latest | grep browser_download_url.*.deb)
+filename=$(basename "$lasted")
+filename=${filename%?}
 update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_gith_desk(){
 	echo "---> Descargando Paquetes  ... "
-	wget -q https://github.com/shiftkey/desktop/releases/download/release-3.2.1-linux1/$version
+	wget -q ${lasted:31:-1}
 	echo "---> Instalando Paquetes  ... "
-	dpkg -i $version
+	dpkg -i $filename > /dev/null
 	echo "---> Eliminando Paquetes ... "
-	rm $version
+	rm $filename
 	echo ""
 }
 
