@@ -32,10 +32,10 @@ function install_docker(){
 
 function install_docker_desktop(){
 	echo "---> Docker Desktop  ... "
-	wget -q https://desktop.docker.com/linux/main/amd64/docker-desktop-4.17.0-amd64.deb
-	apt sudo apt --fix-broken install ./docker-desktop-4.17.0-amd64.deb -y
+	wget -q https://desktop.docker.com/linux/main/amd64/docker-desktop-4.20.1-amd64.deb
+	dpkg -i docker-desktop-4.20.1-amd64.deb
 	echo "---> Eliminando Paquetes ... "
-	rm docker-desktop-4.17.0-amd64.deb
+	rm docker-desktop-4.20.1-amd64.deb
 	echo ""
 }
 
