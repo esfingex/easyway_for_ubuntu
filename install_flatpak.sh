@@ -7,11 +7,13 @@ function update(){
 
 function install_flatpak(){
     echo "---> Instalando Repositorio  ... "
-	add-apt-repository ppa:flatpak/stable
+	add-apt-repository ppa:flatpak/stable -y > /dev/null
 	echo "---> Instalando Paquetes ... "
 	apt-get install flatpak gnome-software-plugin-flatpak -y > /dev/null
     echo "---> Instalando Repositorio de Flatpak... "
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	echo "---> Actualizando ... "
+	update > /dev/null
 	echo ""
 }
 
