@@ -1,4 +1,3 @@
-
 #!/bin/bash
 function update(){
 	apt-get update -y
@@ -11,7 +10,7 @@ update > /dev/null
 #https://asus-linux.org/asusctl/
 function requirements(){
 	echo "---> Instalando Dependencias ... "
-    apt-get build-essential cmake libclang-dev libudev-dev libglib2.0-dev libgtk2.0-dev libgtk-3-dev nvidia-driver-525 nvidia-dkms-525 curl -y > /dev/null
+    apt-get install build-essential cmake libclang-dev libudev-dev libsystemd-dev libseat-dev libglib2.0-dev libgtk2.0-dev libgtk-3-dev nvidia-driver-535 nvidia-dkms-535 curl -y > /dev/null
     echo "---> Instalando Cargo ... "
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source "$HOME/.cargo/env"
@@ -37,8 +36,8 @@ function install_supergfxctl(){
     systemctl enable supergfxd.service --now
 }
 
-echo "Antes que Nada ... Lo escencial *_*"
-requirements
+#echo "Antes que Nada ... Lo escencial *_*"
+#requirements
 echo "Instalando asusctl for ASUS ROG..."
 install_asusctl
 echo "Instalando supergfxctl for ASUS ROG..."
