@@ -26,7 +26,7 @@ function install_vbox(){
 	update > /dev/null
 
 	echo "---> Instalando Paquetes ... "
-    apt install virtualbox-7.0  -y > /dev/null
+    apt-get install virtualbox-7.0  -y > /dev/null
 	echo ""
 
 	echo "---> Configurando  ... "
