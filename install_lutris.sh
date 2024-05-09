@@ -5,21 +5,20 @@ function update(){
 	apt-get autoremove -y
 }
 
-latest=$(wget -q -O - https://api.github.com/repos/lutris/lutris/releases/latest | grep browser_download_url.*.deb)
+latest=$(wget -q -O - https://api.github.com/repos/lutris/lutris/releases/latest | jq -r '.assets[].browser_download_url')
 filename=$(basename "$latest")
-filename=${filename%?}
 
 function install_lutris(){
 	echo "---> Descargando Paquetes  ... "
-	wget -q ${latest:31:-1}
+	wget -q ${latest}
 	echo "---> Instalando Paquetes Adicionales ... "
-	apt-get install fluid-soundfont-gm fluid-soundfont-gs python3-bs4 python3-html5lib python3-lxml python3-magic python3-setproctitle python3-soupsieve python3-webencodings -y > /dev/null
+	apt-get install jq fluid-soundfont-gm fluid-soundfont-gs python3-bs4 python3-html5lib python3-lxml python3-magic python3-setproctitle python3-soupsieve python3-webencodings -y > /dev/null
     echo "---> Install Lutris... "
-	dpkg -i $filename > /dev/null
+	dpkg -i ${filename} > /dev/null
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Eliminando Paquetes ... "
-	rm $filename
+	rm ${filename}
 	echo ""
 }
 
