@@ -8,22 +8,24 @@ sudo ./<script_name.sh>
 ```
 
 ```bash
-1.- Vivaldi Browser for Ubuntu
-2.- Github Desktop for Ubuntu
-3.- VScode for Ubuntu
-4.- Dockers for Ubuntu
-5.- TOR for Ubuntu
-6.- Spark for Ubuntu
-7.- MongoDB for Ubuntu
-8.- Chrome for Ubuntu
-9.- WPS Office for Ubuntu
-10.- Lutris for Ubuntu
-11.- XanMod for Ubuntu
-12.- WineHQ for Ubuntu
-13.- Vbox for Ubuntu
-14.- Asusctl (ASUS ROG) for Ubuntu
-15.- Telegram for Ubuntu
-16.- Flatpak for Ubuntu
+1.- Vivaldi Browser
+2.- Github Desktop
+3.- VScode
+4.- Dockers With Cuda Core
+5.- Red TOR
+6.- Spark
+7.- MongoDB
+8.- Chrome
+9.- WPS Office
+10.- Lutris
+11.- XanMod
+12.- WineHQ
+13.- Virtual Box
+14.- Asusctl (ASUS ROG)
+15.- Telegram
+16.- Flatpak
+17.- MkvToolnix
+18.- NetCore
 ```
 
 ## Contributing
