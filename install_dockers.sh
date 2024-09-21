@@ -33,9 +33,9 @@ function install_docker(){
 function install_docker_desktop(){
 	echo "---> Docker Desktop  ... "
 	wget -q https://desktop.docker.com/linux/main/amd64/167172/docker-desktop-amd64.deb
-	dpkg -i docker-desktop-4.30.0-amd64.deb
+	dpkg -i docker-desktop-amd64.deb
 	echo "---> Eliminando Paquetes ... "
-	rm docker-desktop-4.30.0-amd64.deb
+	rm docker-desktop-amd64.deb
 	echo ""
 }
 
