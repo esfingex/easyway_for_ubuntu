@@ -1,9 +1,7 @@
 #!/bin/bash
 #Only Ubuntu
 function update(){
-	apt-get update -y
-	apt-get upgrade -y
-	apt-get autoremove -y
+	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
 #https://github.com/shiftkey/desktop/releases

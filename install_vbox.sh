@@ -1,8 +1,6 @@
 #!/bin/bash
 function update(){
-	apt-get update -y
-	apt-get upgrade -y
-	apt-get autoremove -y
+	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
 release=$(lsb_release -cs)	#Versión de SO (solo ubuntu)

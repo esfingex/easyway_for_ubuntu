@@ -1,8 +1,6 @@
 #!/bin/bash
 function update(){
-	apt-get update -y
-	apt-get upgrade -y
-	apt-get autoremove -y
+	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
 source_list=/etc/apt/sources.list.d
