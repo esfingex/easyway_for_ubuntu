@@ -11,20 +11,20 @@ if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_vscode(){
     echo "---> Creando APT Source para VSCode..."
-    vscode_list="$source_list/vscode.list"
-    vscode_gpg="$gpgkey_path/microsoft.gpg"
+    aptlist="$source_list/vscode.list"
+    aptgpg="$gpgkey_path/microsoft.gpg"
 
-    if [ ! -f "$vscode_list" ]; then
-        echo "deb ${archtype} https://packages.microsoft.com/repos/code stable main" | sudo tee "$vscode_list" > /dev/null
+    if [ ! -f "$aptlist" ]; then
+        echo "deb ${archtype} https://packages.microsoft.com/repos/code stable main" | sudo tee "$aptlist" > /dev/null
     else
-        echo "---> El repositorio de VSCode ya está configurado."
+        echo "---> El repositorio ya está configurado."
     fi
 
-    if [ ! -f "$vscode_gpg" ]; then
+    if [ ! -f "$aptgpg" ]; then
         echo "---> Descargando la clave GPG de Microsoft..."
-        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmour | sudo tee "$vscode_gpg" > /dev/null
+        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmour | sudo tee "$aptgpg" > /dev/null
     else
-        echo "---> La clave GPG de Microsoft ya está configurada."
+        echo "---> La clave GPG ya está configurada."
     fi
 
     echo "---> Actualizando el índice de paquetes..."
