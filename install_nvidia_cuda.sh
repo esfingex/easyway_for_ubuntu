@@ -48,7 +48,7 @@ function nvidia_cuda(){
 
 function install_cuda(){
     echo "---> Instalando CUDA ... "
-    apt-get -y install cuda nvidia-cuda-toolkit> /dev/null
+    apt-get -y install cuda nvidia-cuda-toolkit > /dev/null
 }
 
 function verify_installation(){
@@ -57,9 +57,16 @@ function verify_installation(){
     nvcc --version
 }
 
+function update_12_to_12_8(){
+    echo "---> Verificando instalación ... "
+    rm -rf /usr/local/cuda
+    ln -s /usr/local/cuda-12.8 /usr/local/cuda
+}
+
 nvidia_cuda
-#install_cuda
-#verify_installation
+install_cuda
+verify_installation
+#update_12_to_12_8
 
 echo "Enjoy 3:)"
 
