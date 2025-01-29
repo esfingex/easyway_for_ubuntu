@@ -48,7 +48,7 @@ function nvidia_cuda(){
 
 function install_cuda(){
     echo "---> Instalando CUDA ... "
-    apt-get -y install cuda  > /dev/null
+    apt-get -y install cuda nvidia-cuda-toolkit> /dev/null
 }
 
 function verify_installation(){
