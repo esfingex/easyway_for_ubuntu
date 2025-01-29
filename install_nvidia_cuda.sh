@@ -61,6 +61,9 @@ function update_12_to_12_8(){
     echo "---> Verificando instalación ... "
     rm -rf /usr/local/cuda
     ln -s /usr/local/cuda-12.8 /usr/local/cuda
+    export PATH=/usr/local/cuda/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
 }
 
 nvidia_cuda
