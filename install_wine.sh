@@ -7,7 +7,7 @@ release=$(lsb_release -cs)	#Versión de SO (solo ubuntu)
 source_list=/etc/apt/sources.list.d
 
 update > /dev/null
-if [ "$(arch)" = "x86_64" ]; then archtype="arch=amd64"; fi
+if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_winehq(){
 	echo "---> Creando APT Source  ... "

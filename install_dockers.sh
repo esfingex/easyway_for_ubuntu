@@ -8,10 +8,8 @@ source_list=/etc/apt/sources.list.d
 gpgkey_path=/etc/apt/trusted.gpg.d
 
 update > /dev/null
-if [ "$(arch)" = "x86_64" ]; then archtype="arch=amd64"; fi
+if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
-function install_docker(){
-	echo "Instalando Dockers ..."
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	echo $text >> $source_list/docker.list
