@@ -71,6 +71,7 @@ install_cuda
 verify_installation
 #update_12_to_12_8
 
+echo "Recuerda Reiniciar el Computador ..."
 echo "Enjoy 3:)"
 
 
