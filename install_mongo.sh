@@ -8,7 +8,7 @@ gpgkey_path=/etc/apt/trusted.gpg.d
 
 update > /dev/null
 apt-get install gnupg -y > /dev/null
-if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
+if [ "$(arch)" = "x86_64" ]; then archtype="arch=amd64"; fi
 
 function install_mongo(){
 	echo "---> Creando APT Source  ... "

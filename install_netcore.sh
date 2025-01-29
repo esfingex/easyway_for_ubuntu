@@ -9,7 +9,7 @@ version=$(. /etc/os-release;echo $ID/$VERSION_ID)
 distribution=$(. /etc/os-release;echo $VERSION_CODENAME)
 
 update > /dev/null
-if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
+if [ "$(arch)" = "x86_64" ]; then archtype="arch=amd64"; fi
 
 function install_netcore(){
 	echo "---> Creando APT Source para NetCore... "
