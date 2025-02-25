@@ -66,7 +66,7 @@ systemctl --user restart pipewire pipewire-pulse
 
 Para evitar que VLC haga resampling:
 
-1️⃣ **Abre VLC** y ve a **Herramientas > Preferencias (****`Ctrl + P`****)**.
+1️⃣ **Abre VLC** y ve a **Herramientas > Preferencias (********`Ctrl + P`********)**.
 2️⃣ En la parte inferior, selecciona **"Mostrar configuración: Todo"**.
 3️⃣ Ve a **Audio > Módulos de salida > ALSA**.
 4️⃣ En **"Dispositivo de salida de audio"**, escribe manualmente:
@@ -124,6 +124,37 @@ La salida del comando `hw_params` contiene varias líneas de información. Aquí
 - **buffer\_size y period\_size:** Controlan el tamaño del búfer de audio, pero no afectan la calidad del sonido.
 
 Si `rate` no cambia al reproducir diferentes archivos, significa que aún hay resampling activo y se debe revisar la configuración de PipeWire y VLC.
+
+### **Opcional: Instalar herramientas de monitoreo de audio**
+
+Si quieres monitorear el flujo de audio y asegurarte de que no hay saturación ni clipping, puedes instalar herramientas adicionales:
+
+#### **qpwgraph** (Monitor de conexiones en PipeWire)
+
+```bash
+sudo apt install qpwgraph
+qpwgraph
+```
+
+🔹 Esto te permite visualizar cómo se enruta el audio en PipeWire y detectar posibles problemas de ganancia o distorsión.
+
+#### **pavucontrol** (Control avanzado de PulseAudio/PipeWire)
+
+```bash
+sudo apt install 
+pavucontrol
+```
+
+🔹 Útil para ajustar el volumen de salida y verificar que no haya amplificación extra en PipeWire o PulseAudio.
+
+#### **Verificar niveles de volumen en PipeWire/PulseAudio**
+
+```bash
+pactl list sinks | grep 'Volume'
+```
+
+🔹 Si los valores superan el **100%**, baja el volumen del sistema o del DAC para evitar saturación.
+
 Para asegurarte de que el DX3 Pro+ recibe la frecuencia original de cada archivo, reproduce un archivo y ejecuta:
 
 ```bash
@@ -145,7 +176,40 @@ cat /proc/asound/card3/pcm0p/sub0/hw_params
   rate: 192000 (192000/1)
   ```
 
-✅ **Si ****`rate`**** cambia según el archivo reproducido, significa que tienes Bit Perfect funcionando al 100%.** 🎧🔥
+✅ **Si ********`rate`******** cambia según el archivo reproducido, significa que tienes Bit Perfect funcionando al 100%.** 🎧🔥
+
+### \*\*Cómo interpretar los valores de \*\***`hw_params`**
+
+La salida del comando `hw_params` contiene varias líneas de información. Aquí están las más relevantes:
+
+- **rate:** Indica la frecuencia de muestreo en Hz. Debe coincidir con la frecuencia del archivo reproducido.
+- **format:** Muestra la profundidad de bits en la que ALSA está enviando el audio al DAC. Valores comunes incluyen `S16_LE` (16 bits) y `S32_LE` (32 bits).
+- **channels:** Indica el número de canales de audio (2 para estéreo).
+- **buffer\_size y period\_size:** Controlan el tamaño del búfer de audio, pero no afectan la calidad del sonido.
+
+Si `rate` no cambia al reproducir diferentes archivos, significa que aún hay resampling activo y se debe revisar la configuración de PipeWire y VLC.
+Para asegurarte de que el DX3 Pro+ recibe la frecuencia original de cada archivo, reproduce un archivo y ejecuta:
+
+```bash
+cat /proc/asound/card3/pcm0p/sub0/hw_params
+```
+
+📌 **Resultados esperados:**
+
+- Si reproduces un **MP3 de 44.1 kHz**:
+  ```
+  rate: 44100 (44100/1)
+  ```
+- Si reproduces un **FLAC de 96 kHz**:
+  ```
+  rate: 96000 (96000/1)
+  ```
+- Si reproduces un **FLAC de 192 kHz**:
+  ```
+  rate: 192000 (192000/1)
+  ```
+
+✅ **Si ********`rate`******** cambia según el archivo reproducido, significa que tienes Bit Perfect funcionando al 100%.** 🎧🔥
 
 ---
 
@@ -153,7 +217,7 @@ cat /proc/asound/card3/pcm0p/sub0/hw_params
 
 🎯 **Ahora Ubuntu 24.04 está enviando el audio original sin resampling forzado al DX3 Pro+.**
 🎯 **VLC está configurado para usar ALSA directo y respetar la frecuencia original.**
-🎯 **Puedes verificarlo con ****`hw_params`****, que te dirá exactamente la frecuencia que recibe el DAC.**
+🎯 **Puedes verificarlo con ********`hw_params`********, que te dirá exactamente la frecuencia que recibe el DAC.**
 
 🚀 **¡Disfruta de tu audio en la mejor calidad posible con el DX3 Pro+ en Linux!** 🎶🔥
 
