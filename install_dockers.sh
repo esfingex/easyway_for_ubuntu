@@ -10,6 +10,8 @@ gpgkey_path=/etc/apt/trusted.gpg.d
 update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
+
+function install_docker(){
 	echo "---> Creando APT Source  ... "
 	text="deb ${archtype} https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	echo $text >> $source_list/docker.list
@@ -28,7 +30,7 @@ if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_docker_desktop(){
 	echo "---> Docker Desktop  ... "
-	wget -q https://desktop.docker.com/linux/main/amd64/167172/docker-desktop-amd64.deb
+	wget -q https://desktop.docker.com/linux/main/amd64/191736/docker-desktop-amd64.deb
 	dpkg -i docker-desktop-amd64.deb
 	echo "---> Eliminando Paquetes ... "
 	rm docker-desktop-amd64.deb
