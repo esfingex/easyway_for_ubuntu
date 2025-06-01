@@ -1,4 +1,7 @@
 #!/bin/bash
+#https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+
 function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
@@ -6,6 +9,7 @@ function update(){
 USER="${SUDO_USER:-${USER}}"
 source_list=/etc/apt/sources.list.d
 gpgkey_path=/etc/apt/trusted.gpg.d
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 
 update > /dev/null
 if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
@@ -30,6 +34,9 @@ function install_docker(){
 
 function install_docker_desktop(){
 	echo "---> Docker Desktop  ... "
+	echo "---> Instalando Paquetes ... "
+	apt-get install qemu-system-x86 pass uidmap -y > /dev/null
+	echo "---> Descarga Docker Desktop ... "
 	wget -q https://desktop.docker.com/linux/main/amd64/191736/docker-desktop-amd64.deb
 	dpkg -i docker-desktop-amd64.deb
 	echo "---> Eliminando Paquetes ... "
@@ -51,7 +58,6 @@ function kvm_virtualization(){
 function nvidia_container_toolkit(){
 	echo "Instalando Nvidia Container Toolkit..."
 	echo "---> Creando APT Source  ... "
-	distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
 	text="deb https://nvidia.github.io/libnvidia-container/$distribution/\$(ARCH) /"
 	echo $text >> $source_list/nvidia-container-toolkit.list
 	echo "---> Docker Key ... "
