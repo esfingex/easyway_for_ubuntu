@@ -28,11 +28,6 @@ sudo ./<script_name.sh>
 18.- NetCore
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
 **Descripción general**
 
 Este repositorio contiene principalmente scripts de shell para automatizar la instalación de aplicaciones en Ubuntu. El archivo README explica cómo ejecutarlos con permisos de administrador y enumera las instalaciones disponibles. Cada script es autocontenido y suele seguir un patrón común: define una función `update` para ejecutar `apt-get update` y `upgrade`, configura archivos en `/etc/apt/sources.list.d` y claves en `/etc/apt/trusted.gpg.d`, y finalmente instala los paquetes necesarios.
@@ -62,17 +57,4 @@ Además hay un archivo `.vscode/launch.json` que define una configuración simpl
    No existe un orquestador único. Deben ejecutarse manualmente según la aplicación que se quiera instalar.
 5. **Código modesto y sin pruebas**  
    Es un proyecto simple de automatización. No incluye tests ni integración continua.
-
-**Recomendaciones de aprendizaje para nuevos colaboradores**
-
-- **Shell scripting y apt**  
-  Familiarízate con los comandos de gestión de paquetes (`apt-get`, `dpkg`, `add-apt-repository`) y buenas prácticas al escribir scripts Bash.
-- **GPG y claves de repositorio**  
-  Comprende cómo funcionan las claves GPG para repositorios apt y dónde se almacenan.
-- **Automatización y permisos**  
-  Aprende a manejar correctamente los permisos (sudo) y el concepto de ejecución no interactiva en scripts de instalación.
-- **Mantenimiento de repositorios**  
-  Al agregar nuevos scripts, sigue el estilo existente: declarar rutas, preparar el repo, instalar y limpiar.  
-- **Documentación adicional**  
-  Aunque el README menciona todos los scripts, convendría añadir ejemplos de salida o advertencias en cada script. Considera contribuir con mejoras en la documentación.
 
