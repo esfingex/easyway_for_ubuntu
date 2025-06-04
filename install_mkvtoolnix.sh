@@ -14,7 +14,7 @@ function install_mkvtoolnix(){
 	text="deb ${archtype} https://mkvtoolnix.download/ubuntu/ jammy main"
 	echo $text >>$source_list/mkvtoolnix.download.list
 	echo "---> MKVToolNix Key ... "
-	wget -qO- https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg | gpg --dearmour > $gpgkey_path/gpg-pub-moritzbunkus.gpg
+	wget -qO- https://mkvtoolnix.download/gpg-pub-moritzbunkus.gpg | gpg --dearmor > $gpgkey_path/gpg-pub-moritzbunkus.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

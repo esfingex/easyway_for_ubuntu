@@ -39,7 +39,7 @@ function nvidia_cuda(){
     rm cuda-keyring_1.1-1_all.deb
 
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys A4B469963BF863CC
-    apt-key export A4B469963BF863CC | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/nvidia-cuda-keyring.gpg
+    apt-key export A4B469963BF863CC | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/nvidia-cuda-keyring.gpg
     rm /etc/apt/trusted.gpg
 
     update

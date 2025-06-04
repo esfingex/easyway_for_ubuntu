@@ -14,7 +14,7 @@ function install_chrome(){
 	text="deb ${archtype} http://dl.google.com/linux/chrome/deb/ stable main"
 	echo $text >>$source_list/google-chrome.list
 	echo "---> Chrome Key ... "
-	wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmour > $gpgkey_path/linux_signing_key.gpg
+	wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > $gpgkey_path/linux_signing_key.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

@@ -14,7 +14,7 @@ function install_tor(){
 	text="deb ${archtype} https://deb.torproject.org/torproject.org/ $(lsb_release -cs) main"
 	echo $text >> $source_list/tor.list
 	echo "---> Tor Key ... "
-	wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmour -o $gpgkey_path/tor.gpg
+	wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor -o $gpgkey_path/tor.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

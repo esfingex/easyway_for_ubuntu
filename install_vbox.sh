@@ -18,7 +18,7 @@ function install_vbox(){
     echo $text >> $source_list/vbox.list
 	
 	echo "---> VirtualBox Key ... "
-    wget -qO- https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmour > $gpgkey_path/oracle-virtualbox-2016.gpg
+    wget -qO- https://www.virtualbox.org/download/oracle_vbox_2016.asc | gpg --dearmor > $gpgkey_path/oracle-virtualbox-2016.gpg
 	
 	echo "---> Actualizando ... "
 	update > /dev/null

@@ -23,7 +23,7 @@ function install_nodejs(){
 
     if [ ! -f "$nodejs_gpg" ]; then
         echo "---> Descargando la clave GPG de NodeJs..."
-        wget -qO- https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmour | sudo tee "$nodejs_gpg" > /dev/null
+        wget -qO- https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor | sudo tee "$nodejs_gpg" > /dev/null
     else
         echo "---> La clave GPG de NodeJs ya está configurada."
     fi

@@ -61,7 +61,7 @@ function nvidia_container_toolkit(){
 	text="deb https://nvidia.github.io/libnvidia-container/$distribution/\$(ARCH) /"
 	echo $text >> $source_list/nvidia-container-toolkit.list
 	echo "---> Docker Key ... "
-	wget -qO- https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmour -o $gpgkey_path/nvidia-container-toolkit-keyring.gpg
+	wget -qO- https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o $gpgkey_path/nvidia-container-toolkit-keyring.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

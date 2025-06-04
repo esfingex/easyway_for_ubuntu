@@ -22,7 +22,7 @@ function install_firefox(){
 
     if [ ! -f "$firefox_gpg" ]; then
         echo "---> Descargando la clave GPG de Firefox..."
-        wget -qO- https://packages.mozilla.org/apt/repo-signing-key.gpg | gpg --dearmour | tee "$firefox_gpg" > /dev/null
+        wget -qO- https://packages.mozilla.org/apt/repo-signing-key.gpg | gpg --dearmor | tee "$firefox_gpg" > /dev/null
     else
         echo "---> La clave GPG de Firefox ya está configurada."
     fi

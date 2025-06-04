@@ -22,7 +22,7 @@ function install_vscode(){
 
     if [ ! -f "$aptgpg" ]; then
         echo "---> Descargando la clave GPG de Microsoft..."
-        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmour | sudo tee "$aptgpg" > /dev/null
+        wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | sudo tee "$aptgpg" > /dev/null
     else
         echo "---> La clave GPG ya está configurada."
     fi

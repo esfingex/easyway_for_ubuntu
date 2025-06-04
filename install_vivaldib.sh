@@ -14,7 +14,7 @@ function install_vivaldi(){
 	text="deb ${archtype} https://repo.vivaldi.com/archive/deb/ stable main"
 	echo $text >> $source_list/vivaldi.list
 	echo "---> Vivaldi Key ... "
-	wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | gpg --dearmour > $gpgkey_path/linux_signing_key.gpg
+	wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | gpg --dearmor > $gpgkey_path/linux_signing_key.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

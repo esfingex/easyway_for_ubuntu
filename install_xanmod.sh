@@ -14,7 +14,7 @@ function install_xanmod(){
 	text="deb ${archtype} http://deb.xanmod.org releases main"
 	echo $text >> $source_list/xanmod-kernel.list
 	echo "---> XanMod Key ... "
-	wget -qO- https://dl.xanmod.org/gpg.key | gpg --dearmour > $gpgkey_path/xanmod-kernel.gpg
+	wget -qO- https://dl.xanmod.org/gpg.key | gpg --dearmor > $gpgkey_path/xanmod-kernel.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "

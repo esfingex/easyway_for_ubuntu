@@ -15,7 +15,7 @@ function install_mongo(){
 	text="deb ${archtype} https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/5.0 multiverse"
 	echo $text >> $source_list/mongodb.list
 	echo "---> MongoDB Key ... "
-	wget -qO- https://www.mongodb.org/static/pgp/server-5.0.asc | gpg --dearmour -o $gpgkey_path/mongodb.gpg
+	wget -qO- https://www.mongodb.org/static/pgp/server-5.0.asc | gpg --dearmor -o $gpgkey_path/mongodb.gpg
 	echo "---> Actualizando ... "
 	update > /dev/null
 	echo "---> Instalando Paquetes ... "
