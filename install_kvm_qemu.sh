@@ -10,6 +10,8 @@ function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
+update > /dev/null
+
 function install_microcode(){
     version=$(dmidecode -s processor-manufacturer)
     echo "---> Instalando microcodes ${version} ... "

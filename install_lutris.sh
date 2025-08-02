@@ -1,7 +1,14 @@
 #!/bin/bash
+if [ "$EUID" -ne 0 ]; then
+  echo "Por favor ejecuta como root"
+  exit 1
+fi
+
 function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
+
+update > /dev/null
 
 latest=$(wget -q -O - https://api.github.com/repos/lutris/lutris/releases/latest | jq -r '.assets[].browser_download_url')
 filename=$(basename "$latest")

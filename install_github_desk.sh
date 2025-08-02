@@ -1,5 +1,10 @@
 #!/bin/bash
 #Only Ubuntu
+if [ "$EUID" -ne 0 ]; then
+  echo "Por favor ejecuta como root"
+  exit 1
+fi
+
 function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }

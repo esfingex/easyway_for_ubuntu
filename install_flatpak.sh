@@ -3,6 +3,13 @@ function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
+if [ "$EUID" -ne 0 ]; then
+  echo "Por favor ejecuta como root"
+  exit 1
+fi
+
+update > /dev/null
+
 function install_flatpak(){
     echo "---> Instalando Repositorio  ... "
 	add-apt-repository ppa:flatpak/stable -y > /dev/null

@@ -2,10 +2,10 @@
 #Según doc
 #https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#network-repo-installation-for-ubuntu
 
-#if [ "$EUID" -ne 0 ]; then
-#    echo "Por favor, ejecute como root."
-#    exit 1
-#fi
+if [ "$EUID" -ne 0 ]; then
+    echo "Por favor, ejecute como root."
+    exit 1
+fi
 
 #Only Ubuntu
 function update(){

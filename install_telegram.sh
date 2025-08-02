@@ -1,7 +1,14 @@
 #!/bin/bash
+if [ "$EUID" -ne 0 ]; then
+    echo "Por favor, ejecute como root."
+    exit 1
+fi
+
 function update(){
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
+
+update > /dev/null
 
 function install_telegram(){
     echo "---> Actualizando ... "
