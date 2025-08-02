@@ -49,4 +49,5 @@ function install_kvm_qemu(){
 echo "Instalando kvm & qemu ..."
 install_microcode
 install_kvm_qemu
+echo "Recuerda Reiniciar el Sistema ..."
 echo "Enjoy 3:)"
