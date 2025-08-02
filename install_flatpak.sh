@@ -16,6 +16,11 @@ function install_flatpak(){
 }
 
 #Beta Install Nvidia with Bottle (Inyect Files)
+#Se debe instalar las librerías de Nvidia para este caso
+#hay 2 forma de instalar estas librerías
+#1.- de add-apt-repository ppa:graphics-drivers/ppa
+#2.- repositorio oficial de Nvidia
+#Es mejor el repo oficial
 function install_flatpak_nvidia(){
 	DEST_DIR="/opt/flatpak-nvidia-libs"
 
@@ -95,7 +100,6 @@ EOF
 	#--env=__NV_PRIME_RENDER_OFFLOAD=1 \		#Solo si tienes laptop
 	--env=__GLX_VENDOR_LIBRARY_NAME=nvidia \
 	--filesystem=/opt/flatpak-nvidia-libs:ro
-
 
 }
 
