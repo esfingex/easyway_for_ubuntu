@@ -7,6 +7,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 function update(){
+	echo "Actualizando el sistema..."
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 

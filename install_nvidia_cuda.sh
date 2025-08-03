@@ -9,6 +9,7 @@ fi
 
 #Only Ubuntu
 function update(){
+    echo "Actualizando el sistema..."
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 

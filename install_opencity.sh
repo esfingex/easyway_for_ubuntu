@@ -19,7 +19,8 @@ NAME_INSTALL=athena
 
 #Only Ubuntu
 function update(){
-	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
+  echo "Actualizando el sistema..."
+  apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
 function install_base(){

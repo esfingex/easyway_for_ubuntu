@@ -1,11 +1,11 @@
 #!/bin/bash
 #Only Ubuntu
 function update(){
+    echo "Actualizando el sistema..."
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
 }
 
 update > /dev/null
-#if [ $(arch) == 'x86_64' ]; then archtype=[arch=amd64]; fi
 
 function install_maven(){
     apt install maven -y > /dev/null
