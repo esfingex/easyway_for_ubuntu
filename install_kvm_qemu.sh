@@ -44,11 +44,6 @@ function install_virgl_support(){
 
 #Instalacion standar falta la que corra vulkan con las VM
 function install_kvm_qemu(){
-
-    if echo $XDG_SESSION_TYPE | grep -q wayland; then
-        echo "⚠️ Estás en Wayland. VirGL puede no funcionar correctamente. Usa X11 para mejor compatibilidad."
-    fi
-
     echo "---> Instalando KVM & Qemu ... "
     apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients \
         bridge-utils virt-manager mesa-utils qemu-system-x86 \
@@ -76,9 +71,16 @@ function install_kvm_qemu(){
 
 }
 
+function check_wayland(){
+    if echo "$XDG_SESSION_TYPE" | grep -qi wayland; then
+        echo "Estás usando Wayland. Considera cambiar a X11 para mejor compatibilidad con VirGL."
+    fi
+}
+
 echo "Instalando kvm & qemu ..."
+check_wayland
 install_microcode
 install_kvm_qemu
-install_virgl_support
+install_virgl_support   #Beta
 echo "Recuerda Reiniciar el Sistema ..."
 echo "Enjoy 3:)"
