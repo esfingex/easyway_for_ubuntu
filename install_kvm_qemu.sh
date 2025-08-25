@@ -57,7 +57,7 @@ function install_kvm_qemu(){
 
     echo "---> Habilitando y levantando libvirtd..."
     systemctl enable --now libvirtd
-    newgrp libvirt
+    #newgrp libvirt
 
     echo "---> Cargando Modulo KVM ${version} ... "
     version=$(dmidecode -s processor-manufacturer)
