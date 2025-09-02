@@ -31,6 +31,7 @@ function install_flatpak(){
 #Es mejor el repo oficial
 function install_flatpak_nvidia(){
 	DEST_DIR="/opt/flatpak-nvidia-libs"
+	NVIDIA_VER=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -n1)
 
 	echo "[+] Creando directorio de Instalación ..."
 	mkdir -p $DEST_DIR
@@ -49,22 +50,20 @@ function install_flatpak_nvidia(){
 	cp /usr/lib/x86_64-linux-gnu/libnvidia-rtcore.so* $DEST_DIR
 	
 	cp /usr/lib/x86_64-linux-gnu/libnvidia-ngx.so* $DEST_DIR
-	ln -s libnvidia-ngx.so.570.158.01 libnvidia-ngx.so
-	ln -s libnvidia-ngx.so.570.158.01 libnvidia-ngx.so1
+	ln -s libnvidia-ngx.so.$NVIDIA_VER libnvidia-ngx.so
+	ln -s libnvidia-ngx.so.$NVIDIA_VER libnvidia-ngx.so1
 
-	cp /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.570.158.01 
-	ln -s libnvidia-ml.so.570.158.01 libnvidia-ml.so
-	ln -s libnvidia-ml.so.570.158.01 libnvidia-ml.so1
+	cp /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.$NVIDIA_VER
+	ln -s libnvidia-ml.so.$NVIDIA_VER libnvidia-ml.so
+	ln -s libnvidia-ml.so.$NVIDIA_VER libnvidia-ml.so1
 
-	cp /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.570.158.01
-	ln -s libnvidia-cfg.so.570.158.01 libnvidia-cfg.so
-	ln -s libnvidia-cfg.so.570.158.01 libnvidia-cfg.so1
+	cp /usr/lib/x86_64-linux-gnu/libnvidia-cfg.so.$NVIDIA_VER
+	ln -s libnvidia-cfg.so.$NVIDIA_VER libnvidia-cfg.so
+	ln -s libnvidia-cfg.so.$NVIDIA_VER libnvidia-cfg.so1
 	
-	cp /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.570.158.01
-	ln -s libnvidia-encode.so.570.158.01 libnvidia-encode.so
-	ln -s libnvidia-encode.so.570.158.01 libnvidia-encode.so1
-
-
+	cp /usr/lib/x86_64-linux-gnu/libnvidia-encode.so.$NVIDIA_VER
+	ln -s libnvidia-encode.so.$NVIDIA_VER libnvidia-encode.so
+	ln -s libnvidia-encode.so.$NVIDIA_VER libnvidia-encode.so1
 
 	# Crear archivo JSON de vendor para GLVND
 	echo "[+] Configura librería..."
@@ -87,14 +86,11 @@ EOF
 	sed -i 's#"library_path": "libvulkan.so.1"#"library_path": "/opt/flatpak-nvidia-libs/libvulkan.so.1"#' $DEST_DIR/nvidia_icd.json
 	sed -i 's#"library_path": "libvulkan.so.1"#"library_path": "/opt/flatpak-nvidia-libs/libvulkan.so.1"#' $DEST_DIR/nvidia_layers.json
 
-
-
 	#Dar permisos adecuados
 	chmod 644 $DEST_DIR/50_nvidia.json
 	chmod 644 $DEST_DIR/nvidia_icd.json
 	chmod 644 $DEST_DIR/nvidia_layers.json
 	chmod -R 755 $DEST_DIR
-
 
 	#Aplicar override en Flatpak
 	#flatpak override --user --show com.usebottles.bottles			Para Pruebas
