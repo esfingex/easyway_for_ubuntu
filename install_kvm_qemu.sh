@@ -6,6 +6,10 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
+set -e  # Si algo falla, el script se detiene
+
+SUSER=${SUDO_USER:-$USER}
+
 function update(){
     echo "Actualizando el sistema..."
 	apt-get update -y && apt-get upgrade -y && apt-get autoremove -y
@@ -13,10 +17,17 @@ function update(){
 
 update > /dev/null
 
+function ensure_dmidecode(){
+    if ! command -v dmidecode >/dev/null 2>&1; then
+        echo "---> Instalando dmidecode..."
+        apt-get install -y dmidecode > /dev/null
+    fi
+}
+
 function install_microcode(){
     version=$(dmidecode -s processor-manufacturer)
     echo "---> Instalando microcodes ${version} ... "
-    if [ ${version:0:5} == 'Intel' ]; then
+    if [ "${version:0:5}" = 'Intel' ]; then
         apt-get install intel-microcode iucode-tool -y > /dev/null
     else 
         apt-get install amd64-microcode -y > /dev/null
@@ -50,7 +61,7 @@ function install_kvm_qemu(){
         mesa-vulkan-drivers virt-viewer ovmf > /dev/null
 
     echo "---> Agregando usuario actual a grupo libvirt ..."
-    usermod -aG libvirt $(whoami)
+    usermod -aG libvirt $SUSER
 
     echo "---> Agregando usuario libvirt al grupo de video..."
     usermod -aG render,video,kvm libvirt-qemu
@@ -59,9 +70,9 @@ function install_kvm_qemu(){
     systemctl enable --now libvirtd
     #newgrp libvirt
 
-    echo "---> Cargando Modulo KVM ${version} ... "
     version=$(dmidecode -s processor-manufacturer)
-    if [ ${version:0:5} == 'Intel' ]; then
+    echo "---> Cargando Modulo KVM ${version} ... "
+    if [ "${version:0:5}" = 'Intel' ]; then
         modprobe kvm_intel
         echo -e "kvm\nkvm_intel" | sudo tee /etc/modules-load.d/kvm.conf
     else 
@@ -79,6 +90,7 @@ function check_wayland(){
 
 echo "Instalando kvm & qemu ..."
 check_wayland
+ensure_dmidecode
 install_microcode
 install_kvm_qemu
 install_virgl_support   #Beta
